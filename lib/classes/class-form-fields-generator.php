@@ -5671,7 +5671,7 @@ if( ! class_exists( 'FormFieldsGenerator' ) ) {
 
             ob_start();
             ?>
-            <div <?php if(!empty($depends)) {?> data-depends="[<?php echo esc_attr($depends); ?>]" <?php } ?> id="field-wrapper-<?php echo esc_attr($id); ?>" class="<?php if(!empty($depends)) echo 'dependency-field'; ?> field-wrapper field-icon-wrapper
+            <div <?php if(!empty($depends)) {?> data-depends="[<?php echo esc_attr($depends); ?>]" <?php } ?> id="field-wrapper-<?php echo esc_attr($id); ?>" class="<?php if(!empty($depends)) echo 'dependency-field'; ?> field-wrapper field-icon-wrapper mpStyle
             field-icon-wrapper-<?php echo esc_attr($id); ?>">
              
 	            <?php do_action('mp_input_add_icon',$field_name,$value); ?>
@@ -8318,13 +8318,15 @@ if( ! class_exists( 'FormFieldsGenerator' ) ) {
                             if(type == 'text'){
                                 html+='<input type="text" <?php echo esc_attr(TTBM_Layout::no_pro_disabled($field_name)); ?> value="'+default_val+'" name="<?php echo esc_attr($field_name); ?>['+now+']['+element.item_id+']"/>';
                             }else if(type == 'mp_icon'){
-								html+='<div class="mp_input_add_icon">' +
-								    '<button type="button" class="mp_input_add_icon_button dButton_xs">' +
-								    '<input type="hidden" name="<?php echo esc_attr($field_name); ?>['+now+']['+element.item_id+']" placeholder="" value=""/>' +
-								    '<span class="" data-empty-text="<?php esc_html_e( 'Add Icon', 'tour-booking-manager' ); ?>"><?php esc_html_e( 'Add Icon', 'tour-booking-manager' );?></span>' +
-								    '<span class="fas fa-times remove_input_icon " title="<?php esc_html_e( 'Remove Icon', 'tour-booking-manager' ); ?>"></span>' +
-								    '</button>' +
-								    '</div>';
+								html+='<div class="mp_add_icon_image_area fdColumn">' +
+                                    '<input type="hidden" name="<?php echo esc_attr($field_name); ?>['+now+']['+element.item_id+']" value=""/> ' +
+                                    ' <div class="mp_icon_item '+default_val?"":"dNone"+'"><div class="allCenter"><span class="'+default_val?"dNone":""+'" data-add-icon></span></div>' +
+                                    '<span class="fas fa-times mp_remove_icon mp_icon_remove" title="<?php esc_html_e("Remove Icon", "bus-ticket-booking-with-seat-reservation"); ?>"></span>'+
+                                '</div>' +
+                                '<div class="mp_add_icon_image_button_area  '+default_val?"dNone":""+'">' +
+                                '<div class="flexEqual">' +
+                                '<button class="_mpBtn_xs mp_icon_add" type="button" data-target-popup="#mp_add_icon_popup">'+
+                                '<span class="fas fa-plus"></span><?php esc_html_e('Icon', 'bus-ticket-booking-with-seat-reservation'); ?></button></div></div></div>';
                             }else if(type == 'number'){
                                 html+='<input type="number" <?php echo esc_attr(TTBM_Layout::no_pro_disabled($field_name)); ?>  value="'+default_val+'" name="<?php echo esc_attr($field_name); ?>['+now+']['+element.item_id+']"/>';
                             }else if(type == 'tel'){
